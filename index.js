@@ -18,13 +18,15 @@ mongoose.connect(process.env.DATABASE_URL)
     console.log('Error connecting to database');
 });
 
+require('./views/board.view')(app);
+
 app.get('/', (req, res) => {
     res.status(200).json({
-      message: 'Welcome to Project with Nodejs Express and MongoDB',
+        message: 'Welcome to Project with Nodejs Express and MongoDB',
     });
 });
 
 app.listen(port, () => {
-    console.log(`Our server is running on port ${port}`);
+    console.log(`Server is running at site: http://localhost:${port}`);
 });
 
