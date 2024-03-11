@@ -1,5 +1,6 @@
-const { getAll } = require("../controllers/board")
+const { getAll, createBoard } = require("../controllers/board")
 
 module.exports = function(app){
-    app.get('/board', getAll);
+    app.get('/boards', getAll);
+    app.post('/boards', createBoard);
 }

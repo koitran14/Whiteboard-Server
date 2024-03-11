@@ -1,19 +1,14 @@
 const mongoose = require("mongoose");
 
-const board = mongoose.Schema({
-
+const boardSchema = mongoose.Schema({
     title: {
         type: String,
-        require: true,
+        required: true,
     },
     description: {
         type: String,
-        require: true,
+        required: true,
     },
-    // participants: {
-    //     type: User[],
-    //     require: true,
-    // }
 })
 
-module.exports = mongoose.model("Board", board);
+module.exports = mongoose.model("Board", boardSchema);
