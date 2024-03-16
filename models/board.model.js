@@ -5,10 +5,26 @@ const boardSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    description: {
+    orgId: {
         type: String,
         required: true,
     },
+    authorId: {
+        type: String,
+        required: true,
+    },
+    imageUrl: {
+        type: String,
+        required: true,
+    },
+    createdAt: {
+        type: Date,
+        required: true,
+    },
+    isFavorite: {
+        type: Boolean,
+        default: false
+    }
 })
 
 module.exports = mongoose.model("Board", boardSchema);
