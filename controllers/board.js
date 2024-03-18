@@ -12,12 +12,9 @@ exports.getAll = async (req, res) => {
 exports.createBoard = async (req, res) => {
    try {
       console.log(req.body);
-      const board = new Board(req.body);
-      const savedBoard = await board.save().then(doc => {
-         console.log(doc);
-         res.status(201).json(doc);
-      });
+      const board = await Board.create(req.body);
+      return res.status(200).json(board);
    } catch (error) {
-      res.status(500).json({ error: error.message })
+      return res.status(500).json({ error: error.message })
    }
 }
