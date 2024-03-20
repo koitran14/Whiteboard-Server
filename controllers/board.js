@@ -1,9 +1,20 @@
 const Board = require('../models/board.model');
 
+
+
 exports.getAll = async (req, res) => {
    try {
       const boards = await Board.find();
       return res.status(200).json(boards);
+   } catch (error) {
+      return res.status(500).json({ error: error.message });
+   }
+};
+
+exports.getById = async (req, res) => {
+   try {
+      const boards = await Board.find({ _id: req.params.id });
+      return res.status(200).json(boards[0]);
    } catch (error) {
       return res.status(500).json({ error: error.message });
    }
@@ -28,9 +39,29 @@ exports.createBoard = async (req, res) => {
    }
 }
 
+exports.setFavorite = async(req, res) => {
+      try {
+         const {isFavorite} = req.body;
+         const board = await Board.updateOne({_id: req.params.id}, {isFavorite})
+         return res.status(200).json(board);
+      } catch (error) {
+         return res.status(500).json({ error: error.message })
+      }
+}
+
 exports.updateBoard = async (req, res) => {
    try {
       const board = await Board.updateOne({ _id:req.params.id }, req.body);
+      return res.status(200).json(board);
+   } catch (error) {
+      return res.status(500).json({ error: error.message })
+   }
+}
+
+exports.renameBoard = async(req, res) => {
+   try {
+      const { title } = req.body;
+      const board = await Board.updateOne({_id: req.params.id}, { title })
       return res.status(200).json(board);
    } catch (error) {
       return res.status(500).json({ error: error.message })
