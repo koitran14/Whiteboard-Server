@@ -4,7 +4,7 @@ module.exports = function(app){
     //GET
     app.get('/boards', getAll);
     app.get('/boards/:id', getByOrgId);
-    app.get('/boards/id/:id', getById);
+    app.get('/board/id/:id', getById);
 
     //POST
     app.post('/boards', createBoard);

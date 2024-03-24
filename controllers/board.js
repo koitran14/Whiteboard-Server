@@ -1,7 +1,5 @@
 const Board = require('../models/board.model');
 
-
-
 exports.getAll = async (req, res) => {
    try {
       const boards = await Board.find();
@@ -13,8 +11,8 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
    try {
-      const boards = await Board.find({ _id: req.params.id });
-      return res.status(200).json(boards[0]);
+      const board = await Board.find({ _id: req.params.id });
+      return res.status(200).json(board[0]);
    } catch (error) {
       return res.status(500).json({ error: error.message });
    }
