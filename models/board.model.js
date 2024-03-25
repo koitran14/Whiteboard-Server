@@ -20,10 +20,6 @@ const boardSchema = mongoose.Schema({
     createdAt: {
         type: Date,
         default: new Date(),
-    },
-    isFavorite: {
-        type: Boolean,
-        default: false
     }
 })
 

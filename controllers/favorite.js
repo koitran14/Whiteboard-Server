@@ -13,11 +13,10 @@ exports.checked = async (req, res) => {
 
 exports.setFavorite = async (req, res) => {
     try {
-        const { userId, boardId } = req.body; 
+        const { userId, boardId } = req.params; 
         if (!userId || !boardId) {
             return res.status(400).json({ error: "userId and boardId are required" });
         }
-        // Create a new favorite
         await Favorite.create({ userId, boardId });
         return res.status(200).json({ message: "Operation successful" });
     } catch (error) {
@@ -25,14 +24,13 @@ exports.setFavorite = async (req, res) => {
     }
 }
 
-
 exports.removeFavorite = async (req, res) => {
     try {
-        const { userId, boardId } = req.body; 
+        const { userId, boardId } = req.params; 
         if (!userId || !boardId) {
             return res.status(400).json({ error: "userId and boardId are required" });
         }
-        const favorite = await Favorite.deleteOne({ userId: userId, boardId: boardId });
+        const favorite = await Favorite.deleteMany({ userId: userId, boardId: boardId });
         return res.status(200).json(favorite);
     } catch (error) {
         return res.status(500).json({ error: error.message });

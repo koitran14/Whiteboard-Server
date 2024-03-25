@@ -29,7 +29,6 @@ exports.getByOrgId = async (req, res) => {
 
 exports.createBoard = async (req, res) => {
    try {
-      console.log(req.body);
       const board = await Board.create(req.body);
       return res.status(200).json(board);
    } catch (error) {
