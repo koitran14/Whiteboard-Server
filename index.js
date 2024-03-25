@@ -21,8 +21,10 @@ mongoose.connect(process.env.DATABASE_URL)
 
 app.use(bodyParser.json());
 require('./views/board.view')(app);
-
+require('./views/favorite.view')(app);
 app.listen(port, () => {
     console.log(`Server is running at site: http://localhost:${port}`);
 });
+
+
 
