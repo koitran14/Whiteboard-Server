@@ -1,4 +1,5 @@
 const Board = require('../models/board.model');
+const Favorite = require('../models/favorite.model');
 
 exports.getAll = async (req, res) => {
    try {
@@ -11,8 +12,8 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
    try {
-      const board = await Board.find({ _id: req.params.id });
-      return res.status(200).json(board[0]);
+      const board = await Board.findOne({_id: req.params.boardId});
+      return res.status(200).json(board)
    } catch (error) {
       return res.status(500).json({ error: error.message });
    }
@@ -20,12 +21,18 @@ exports.getById = async (req, res) => {
 
 exports.getByOrgId = async (req, res) => {
    try {
-      const boards = await Board.find({ orgId: req.params.id });
-      return res.status(200).json(boards);
+      const boards = await Board.find({ orgId: req.params.orgId });
+      const favoriteBoards = await Promise.all(boards.map(async (board) => {
+         const check = await Favorite.findOne({ userId: req.params.userId, boardId: board._id });
+         const isFavorite = check !== null 
+         return { ...board.toObject(), isFavorite }; // toObject() is used to convert Mongoose document to plain JavaScript object
+      }));
+      return res.status(200).json(favoriteBoards);
    } catch (error) {
       return res.status(500).json({ error: error.message });
    }
 };
+
 
 exports.createBoard = async (req, res) => {
    try {
@@ -34,16 +41,6 @@ exports.createBoard = async (req, res) => {
    } catch (error) {
       return res.status(500).json({ error: error.message })
    }
-}
-
-exports.setFavorite = async(req, res) => {
-      try {
-         const {isFavorite} = req.body;
-         const board = await Board.updateOne({_id: req.params.id}, {isFavorite})
-         return res.status(200).json(board);
-      } catch (error) {
-         return res.status(500).json({ error: error.message })
-      }
 }
 
 exports.updateBoard = async (req, res) => {

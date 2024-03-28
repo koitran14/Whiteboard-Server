@@ -2,12 +2,12 @@ const Favorite = require('../models/favorite.model');
 
 exports.checked = async (req, res) => {
     try {
-        const data = await Favorite.findOne({ userId: req.params.userId, boardId: req.params.boardId });
-        return res.status(200).json({
-            isFavorite: data !== null
-        });
+        const check = (await Favorite.findOne({userId: req.params.userId, boardId: req.params.boardId})) !== null;
+        
+        return res.status(200).json({isFavorite: check})
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.status(500).json({error: error.message})
+
     }
 }
 
