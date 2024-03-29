@@ -21,10 +21,10 @@ const boardSchema = mongoose.Schema({
         type: Date,
         default: new Date(),
     },
-    isFavorite: {
-        type: Boolean,
-        default: false
-    }
+    // isFavorite: {
+    //     type: Boolean,
+    //     default: false
+    // }
 })
 
 module.exports = mongoose.model("Board", boardSchema);

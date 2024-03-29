@@ -37,15 +37,15 @@ exports.createBoard = async (req, res) => {
    }
 }
 
-exports.setFavorite = async(req, res) => {
-      try {
-         const {isFavorite} = req.body;
-         const board = await Board.updateOne({_id: req.params.id}, {isFavorite})
-         return res.status(200).json(board);
-      } catch (error) {
-         return res.status(500).json({ error: error.message })
-      }
-}
+// exports.setFavorite = async(req, res) => {
+//       try {
+//          const {isFavorite} = req.body;
+//          const board = await Board.updateOne({_id: req.params.id}, {isFavorite})
+//          return res.status(200).json(board);
+//       } catch (error) {
+//          return res.status(500).json({ error: error.message })
+//       }
+// }
 
 exports.updateBoard = async (req, res) => {
    try {
