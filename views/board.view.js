@@ -16,3 +16,4 @@ module.exports = function(app){
     //DELETE
     app.delete('/boards/:id', deleteBoard);
 }
+
