@@ -5,7 +5,7 @@
 2. Copy this one:
 
 ```shell
-DATABASE_URL="mongodb+srv://khoitran1403:khoitran1403@whiteboard-platform.sobhh5j.mongodb.net/?retryWrites=true&w=majority&appName=whiteboard-platform"
+DATABASE_URL="YOUR_MONGODB_URL"
 PORT=8080
 ```
 3. Run in terminal:
