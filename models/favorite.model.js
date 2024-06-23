@@ -8,6 +8,10 @@ const favoriteSchema = mongoose.Schema({
     boardId: {
         type: String,
         required: true,
+    },
+    isFavorite: {
+        type: Boolean,
+        default: false,
     }
 })
 

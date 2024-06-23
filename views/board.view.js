@@ -1,4 +1,4 @@
-const { getAll, createBoard, getByOrgId, updateBoard, deleteBoard, setFavorite, getById, renameBoard } = require("../controllers/board")
+const { getAll, createBoard, getByOrgId, updateBoard, deleteBoard, getById, renameBoard } = require("../controllers/board")
 
 module.exports = function(app){
     //GET
