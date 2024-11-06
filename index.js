@@ -16,6 +16,12 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"], // specify allowed headers
 }));
 
+app.all('/', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next()
+});
+
 mongoose.connect(process.env.DATABASE_URL)
   .then(()=> {
     console.log('Database connected');
