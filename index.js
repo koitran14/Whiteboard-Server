@@ -11,7 +11,7 @@ const cors = require("cors");
 const port = process.env.PORT || 4000;
 
 app.use(cors({
-  origin: "*", // allows all origins
+  origin: ["*", "https://white-board-platform.vercel.app"], // allows all origins
   methods: ["GET", "POST", "PUT", "DELETE"], // specify allowed methods
   allowedHeaders: ["Content-Type", "Authorization"], // specify allowed headers
 }));
