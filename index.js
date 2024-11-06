@@ -10,7 +10,11 @@ const cors = require("cors");
 
 const port = process.env.PORT || 4000;
 
-app.use(cors());
+app.use(cors({
+  origin: "*", // allows all origins
+  methods: ["GET", "POST", "PUT", "DELETE"], // specify allowed methods
+  allowedHeaders: ["Content-Type", "Authorization"], // specify allowed headers
+}));
 
 mongoose.connect(process.env.DATABASE_URL)
   .then(()=> {
