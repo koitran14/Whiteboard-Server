@@ -10,10 +10,18 @@ const cors = require("cors");
 
 const port = process.env.PORT || 4000;
 
+const allowedOrigins = ['https://white-board-platform.vercel.app'];
+
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // specify methods as needed
+  allowedHeaders: ['Content-Type', 'Authorization'], // specify headers as needed
+}));
+
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://your-frontend.com"
+    'https://white-board-platform.vercel.app'
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
